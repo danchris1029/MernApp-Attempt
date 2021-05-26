@@ -8,10 +8,8 @@ class App extends React.Component {
     body: ''
   };
 
-  handleChange = (event) =>{
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
+  handleChange = ({ target }) =>{
+    const { name, value } = target;
 
     this.setState({
       [name]: value
@@ -33,11 +31,19 @@ class App extends React.Component {
     })
       .then(() => {
         console.log('Data has been sent to the server');
+        this.resertUserInputs();
       })
       .catch(() => {
         console.log('Internal server error');
       });
   }
+
+  resertUserInputs = () => {
+    this.setState({
+      title: '',
+      body: ''
+    });
+  };
 
   render() {
 
