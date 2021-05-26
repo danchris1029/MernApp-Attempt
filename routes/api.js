@@ -21,9 +21,22 @@ router.get('/', (req, res) =>{
 
 router.post('/save', (req, res) =>{
     console.log('Body: ', req.body);
-    res.json({
-        msg: "We recieved your data!!"
-    })
+    const data = req.body;
+
+    const newBlogPost = new BlogPost(data);
+
+    // save
+
+    newBlogPost.save((error) => {
+        if(error){
+            res.status(500).json({ msg: 'Sorry, internal server errors'});
+            return;
+        }
+        // BlogPost
+        return res.json({
+            msg: 'Your data has been saved!'
+        }); 
+    });
 });
 
 router.get('/name', (req, res) =>{

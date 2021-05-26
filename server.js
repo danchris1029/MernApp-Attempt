@@ -21,6 +21,9 @@ mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected!!!');
 })
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Saving data to our mongo database
 // const data = {
 //     title: 'Welcome to my home',
